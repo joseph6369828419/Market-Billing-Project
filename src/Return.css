@@ -1,0 +1,146 @@
+.return-parent{
+    position: absolute;
+    left: 15%;
+    top: 0%;
+    height: 100vh;
+    
+    
+ }
+
+ /* Styles for the parent container */
+.billing-parent {
+   
+    padding: 20px;
+    width: 35%; 
+  }
+  
+  /* Styles for the heading */
+  .billing-heading {
+    color: #333;
+  }
+  
+  /* Styles for the form container */
+  .billing-form {
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for the labels */
+  .billing-label {
+    color: #666;
+  }
+  
+  /* Styles for the input fields */
+  .billing-input {
+    width: 50%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+  }
+  
+  /* Styles for the buttons */
+  .billing-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .billing-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Styles for the table container */
+  .billing-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Styles for the table header cells */
+  .billing-th {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px;
+  }
+  
+  /* Styles for the table data cells */
+  .billing-td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Styles for the table rows */
+  .billing-tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Styles for the search input */
+  .search-input {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .search-head{
+    position: absolute;
+    left: 100%;
+    top: 5%;
+  }
+  
+  /* Styles for the search button */
+  .search-button {
+    background-color: #008cba;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #005f6b;
+  }
+  
+  /* Styles for the product table */
+  .product-table {
+    width: 120%;
+    border-collapse: collapse;
+    
+  }
+  
+  /* Styles for the product table header cells */
+  .product-th {
+    background-color: #008cba;
+    color: white;
+    padding: 8px;
+    
+  }
+  
+  /* Styles for the product table data cells */
+  .product-td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Styles for the product table rows */
+  .product-tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Styles for the print button */
+  .print-button {
+    background-color: #008cba;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .print-button:hover {
+    background-color: #005f6b;
+  }
+  

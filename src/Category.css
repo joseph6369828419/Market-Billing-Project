@@ -1,0 +1,75 @@
+.category-parent{
+   position: absolute;
+   left: 15%;
+   top: 0%;
+   height: 100vh;
+   
+  
+}
+/* Styles for the parent container */
+.category-parent {
+
+   padding: 20px;
+   border-radius: 5px;
+   position: absolute;
+   left: 40%;
+   top: 30%;
+ }
+ 
+ /* Styles for the labels */
+ .category-parent label {
+   font-weight: bold;
+   margin-bottom: 10px;
+   display: block;
+   color: #333;
+ }
+ 
+ /* Styles for the input field */
+ .category-parent input[type="text"] {
+   width: 100%;
+   padding: 8px;
+   margin-bottom: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+ }
+ 
+ /* Styles for the buttons */
+ .category-parent button {
+   background-color: #4CAF50;
+   color: white;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   margin-top: 10px;
+ }
+ 
+ .category-parent button:hover {
+   background-color: #45a049;
+ }
+ 
+ /* Styles for the table */
+ .category-parent table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+ }
+ 
+ /* Styles for the table header */
+ .category-parent th {
+   background-color: #008cba;
+   color: white;
+   padding: 8px;
+ }
+ 
+ /* Styles for the table data */
+ .category-parent td {
+   border: 1px solid #ddd;
+   padding: 8px;
+ }
+ 
+ /* Styles for alternating row colors */
+ .category-parent tbody tr:nth-child(even) {
+   background-color: #f2f2f2;
+ }
+ 

@@ -1,0 +1,122 @@
+.parent-sales{
+    position: absolute;
+    left: 15%;
+    top: 0%;
+    height: 100vh;
+    
+   
+ }
+
+ /* Styles for the parent container */
+.parent-sales {
+    padding: 20px;
+  
+    border-radius: 5px;
+    width: 40%;
+  }
+  
+  /* Styles for the heading */
+  .sales-heading {
+    color: #333;
+  }
+  
+  /* Styles for the form container */
+  .sales-inputs {
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for the input fields */
+  .sales-input {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+  }
+  
+  /* Styles for the buttons */
+  .sales-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .sales-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Styles for the table container */
+  .sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    position: absolute;
+    left: -1%;
+  }
+  
+  /* Styles for the table header cells */
+  .sales-th {
+    background-color: #008cba;
+    color: white;
+    padding: 8px;
+
+  }
+  
+  /* Styles for the table data cells */
+  .sales-td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Styles for the search input */
+  .search-input {
+    width: 200px;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Styles for the search button */
+  .search-button {
+    background-color: #008cba;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #005f77;
+  }
+  
+  /* Styles for the product table */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Styles for the product table header cells */
+  .product-th {
+    background-color: #008cba;
+    color: white;
+    padding: 8px;
+  }
+  
+  /* Styles for the product table data cells */
+  .product-td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Styles for alternating row colors */
+  .product-tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
