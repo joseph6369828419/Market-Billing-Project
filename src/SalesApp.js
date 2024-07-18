@@ -7,9 +7,9 @@ function SalesApp() {
     const [productName, setProductName] = useState('');
     const [customerName, setCustomerName] = useState('');
     const [date, setdate] = useState(new Date().toISOString().slice(0,10));
-    const [quantity, setQuantity] = useState(0);
-    const [price, setPrice] = useState(0);
-    const [cashAmount, setCashAmount] = useState(0);
+    const [quantity, setQuantity] = useState();
+    const [price, setPrice] = useState();
+    const [cashAmount, setCashAmount] = useState();
     const [isEditing2, setIsEditing2] = useState(false);
     const [editIndex2, setEditIndex2] = useState(null);
     const [salesearchItems, setSaleSearchItems] = useState([]);

@@ -5,9 +5,10 @@ import axios from "axios";
 function Billing() {
   const [productName, setProductName] = useState('');
   const [customerName, setCustomerName] = useState('');
-  const [date, setdate] = useState(new Date().toISOString().slice(0,10));
+  const [date, setdate] = useState(new Date().toISOString().slice(0, 10));
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
+  const [PhoneNumber, setPhoneNumber] = useState('');
   const [searchName, setSearchName] = useState('');
   const [billItems, setBillItems] = useState([]);
   const [isEditing1, setIsEditing1] = useState(false);
@@ -33,27 +34,26 @@ function Billing() {
     let totalAmount = 0;
     let totalGst = 0;
     let totalDiscount = 0;
-  
+
     items.forEach(item => {
       const itemTotal = item.quantity * item.price;
       const gstAmount = itemTotal * (item.billinggst / 100);
       const discountAmount = itemTotal * (item.discount / 100);
-  
+
       totalAmount += itemTotal + gstAmount - discountAmount;
       totalGst += gstAmount;
       totalDiscount += discountAmount;
     });
-  
+
     setTotal(totalAmount.toFixed(2));
-    
   };
-  
+
   const handleAddItem = async () => {
     if (isEditing1) {
       try {
-        await axios.put(`/updatebill/${billItems[editIndex]._id}`, { productName, customerName,date, quantity, price, billinggst, discount });
+        await axios.put(`/updatebill/${billItems[editIndex]._id}`, { productName, customerName, date, quantity, price, billinggst, discount });
         const updatedProducts = [...billItems];
-        updatedProducts[editIndex] = { _id: billItems[editIndex]._id, productName,date, customerName, quantity, price, billinggst, discount };
+        updatedProducts[editIndex] = { _id: billItems[editIndex]._id, productName, date, customerName, quantity, price, billinggst, discount };
         setBillItems(updatedProducts);
         calculateTotal(updatedProducts);
         setIsEditing1(false);
@@ -63,7 +63,7 @@ function Billing() {
       }
     } else {
       try {
-        const response = await axios.post('/addbill', { productName, customerName,date, quantity, price, billinggst, discount });
+        const response = await axios.post('/addbill', { productName, customerName, date, quantity, price, billinggst, discount });
         const newBillItems = [...billItems, response.data];
         setBillItems(newBillItems);
         calculateTotal(newBillItems);
@@ -118,20 +118,19 @@ function Billing() {
     setQuantity(''); // Clearing quantity if needed
     setPrice(product.price);
     setBillinggst(product.productgst);
-    setDiscount(product.productdiscount)
-   
+    setDiscount(product.productdiscount);
   };
 
   const handlePrint = () => {
     const printWindow = window.open('', '_blank');
-    const today = new Date().toLocaleDateString('en-GB'); 
+    const today = new Date().toLocaleDateString('en-GB');
     printWindow.document.write('<html><head><title>Table Data</title></head><body>');
     printWindow.document.write('<h1>SUPER MARKET</h1>');
     printWindow.document.write('<span>42/Mivahel street, Naduvaikurivhi</span>');
     printWindow.document.write('<h3>Cash Bill</h3>');
 
-    printWindow.document.write('<p>Name:</P>');
-    printWindow.document.write('<p>Date:'+today+'</P>');
+    printWindow.document.write('<p>Name:</p>');
+    printWindow.document.write('<p>Date:' + today + '</p>');
     printWindow.document.write('<table border="1">');
     printWindow.document.write('<thead><tr><th>Product Name</th><th>Customer Name</th><th>Quantity</th><th>Price</th><th>GST</th><th>Discount</th><th>Total</th></tr></thead>');
     printWindow.document.write('<tbody>');
@@ -164,6 +163,29 @@ function Billing() {
     printWindow.document.write('</body></html>');
     printWindow.document.close();
     printWindow.print();
+   
+  };
+
+
+
+  const handleMessage = () => {
+    let message = 'Billing Details:\n\n';
+
+    billItems.forEach((item, index) => {
+      message += `Item ${index + 1}:\n`;
+      message += `Product Name: ${item.productName}\n`;
+      message += `Customer Name: ${item.customerName}\n`;
+      message += `Date: ${item.date}\n`;
+      message += `Quantity: ${item.quantity}\n`;
+      message += `Price: ${item.price}\n`;
+      message += `GST: ${item.billinggst}%\n`;
+      message += `Discount: ${item.discount}%\n\n`;
+    });
+
+    message += `Total Amount: ${total}`;
+
+    const whatsappURL = `https://web.whatsapp.com/send?phone=${PhoneNumber}&text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
   };
 
   return (
@@ -171,20 +193,23 @@ function Billing() {
       <h2 className='billing-heading'>Billing</h2>
       <div className='billing-form'>
         <label className='billing-label'>Product Name:</label>
-        <input type='text' value={productName} onChange={(e) => setProductName(e.target.value)} className='billing-input' />
+        <input type='text' id="productName" value={productName} onChange={(e) => setProductName(e.target.value)} className='billing-input' />
 
         <label className='billing-label'>Customer Name:</label>
-        <input type='text' value={customerName} onChange={(e) => setCustomerName(e.target.value)} className='billing-input' />
+        <input type='text' id="customerName" value={customerName} onChange={(e) => setCustomerName(e.target.value)} className='billing-input' />
+
+        <label className='billing-label'>Phone Number:</label>
+        <input type='number' id="PhoneNumber" value={PhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className='billing-input' />
 
         <label className='product-label'>
-      Date:
-      <input type="date" value={date} onChange={(e) => setdate(e.target.value)} className='product-input' disabled />
-    </label>
+          Date:
+          <input type="date" id="date" value={date} onChange={(e) => setdate(e.target.value)} className='product-input' disabled />
+        </label>
         <label className='billing-label'>Quantity:</label>
-        <input id="quantityInput" type='number' value={quantity} onChange={(e) => setQuantity(e.target.value)} className='billing-input' />
+        <input id="quantity" type='number' value={quantity} onChange={(e) => setQuantity(e.target.value)} className='billing-input' />
 
         <label className='billing-label'>Price:</label>
-        <input type='number' step='0.01' value={price} onChange={(e) => setPrice(e.target.value)} className='billing-input' />
+        <input type='number' step='0.01' id="price" value={price} onChange={(e) => setPrice(e.target.value)} className='billing-input' />
 
         <label className='billing-label'>GST (%):</label>
         <input type='number' step='0.01' value={billinggst} onChange={(e) => setBillinggst(e.target.value)} className='billing-input' />
@@ -234,7 +259,7 @@ function Billing() {
           </tbody>
         </table>
       </div>
-   
+
       <input
         className='search-input'
         type="text"
@@ -243,59 +268,59 @@ function Billing() {
         value={total}
         readOnly
       />
-         <div className='search-head'>
-      <input
-        className='search-input'
-        type="text"
-        name="StudentName"
-        placeholder="Search by Product Name"
-        value={searchName}
-        onChange={(e) => setSearchName(e.target.value)}
-        required
-      />
-      <button onClick={handleSearch} className='search-button'>Search</button>
+      <div className='search-head'>
+        <input
+          className='search-input'
+          type="text"
+          name="StudentName"
+          placeholder="Search by Product Name"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+          required
+        />
+        <button onClick={handleSearch} className='search-button'>Search</button>
 
-      <table className='product-table'>
-        <thead>
-          <tr>
-          <th className='product-th'>Product Name</th>
-          <th className='product-th'>Category</th>
-          <th className='product-th'>Price</th>
-          <th className='product-th'>Stock</th>
-         
-          <th className='product-th'>GST</th>
-          <th className='product-th'>Discount</th>
-          <th className='product-th'>Manufacturer</th>
-          <th className='product-th'>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {searchItems.map((product, index) => {
-            const billedItem = billItems.find(item => item.productName === product.productName);
-            const availableStock = billedItem ? product.stock - billedItem.quantity : product.stock;
-            const displayStock = availableStock <= 0 ? (availableStock === 0 ? 'Out of Stock' : '-1') : availableStock.toFixed(2);
+        <table className='product-table'>
+          <thead>
+            <tr>
+              <th className='product-th'>Product Name</th>
+              <th className='product-th'>Category</th>
+              <th className='product-th'>Price</th>
+              <th className='product-th'>Stock</th>
+              <th className='product-th'>GST</th>
+              <th className='product-th'>Discount</th>
+              <th className='product-th'>Manufacturer</th>
+              <th className='product-th'>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {searchItems.map((product, index) => {
+              const billedItem = billItems.find(item => item.productName === product.productName);
+              const availableStock = billedItem ? product.stock - billedItem.quantity : product.stock;
+              const displayStock = availableStock <= 0 ? (availableStock === 0 ? 'Out of Stock' : '-1') : availableStock.toFixed(2);
 
-            if (displayStock === '-1') {
-              alert('Stock Alert: ' + product.productName + ' is out of stock!');
-            }
+              if (displayStock === '-1') {
+                alert('Stock Alert: ' + product.productName + ' is out of stock!');
+              }
 
-            return (
-              <tr key={index} onClick={() => handleEditProduct(index)} className='product-tr'>
-                <td className='product-td'>{product.productName}</td>
-                <td className='product-td'>{product.category}</td>
-                <td className='product-td'>{product.price}</td>
-                <td className='product-td'>{displayStock}</td>
-                <td className='product-td'>{product.productgst}</td>
-            <td className='product-td'>{product.productdiscount}</td>
-                <td className='product-td'>{product.manufacturer}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+              return (
+                <tr key={index} onClick={() => handleEditProduct(index)} className='product-tr'>
+                  <td className='product-td'>{product.productName}</td>
+                  <td className='product-td'>{product.category}</td>
+                  <td className='product-td'>{product.price}</td>
+                  <td className='product-td'>{displayStock}</td>
+                  <td className='product-td'>{product.productgst}</td>
+                  <td className='product-td'>{product.productdiscount}</td>
+                  <td className='product-td'>{product.manufacturer}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
 
-      <button onClick={handlePrint} className='print-button'>Print</button>
-    </div>
+        <button onClick={handlePrint} className='print-button'>Print</button>
+        <button onClick={handleMessage} className='print-button'>whatsapp Msg Send`</button>
+      </div>
     </div>
   );
 }

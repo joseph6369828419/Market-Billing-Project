@@ -1,0 +1,48 @@
+.ScannerCode-parent{
+    position: absolute;
+    left: 35%;
+    top: 15%;
+    height: 100vh;
+    
+  
+ }
+ .scanner-image{
+    margin-top: 10%;
+    height: 200px;
+    width: 200px;
+ }
+ .scanner-letter{
+    color: orange;
+    font-size: 3rem;
+
+ }
+ .scanner-label{
+   font-weight: bold;
+   font-size: 1.5rem;
+ }
+ .scanner-number{
+   width: 80%;
+   border-radius: 10px;
+   padding: 10px;
+   border: 2px solid black;
+
+
+ }
+ .scanner-head{
+  display: grid;
+
+ }
+ .scanner-btn{
+   background-color: rgb(117, 117, 32);
+   color: black;
+   border-radius: 10px;
+   padding: 10px;
+   border: 2px solid yellow;
+   font-weight: bold;
+   display: block;
+
+ }
+ .scanner-btn:hover{
+background-color: yellow;
+
+ }

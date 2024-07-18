@@ -8,6 +8,7 @@ import SalesApp from"./SalesApp"
 import Report from "./Report"
 import Return from "./Return"
 import Dashboard from "./Dashboard"
+import ScannerCode from "./ScannerCode"
 import "./App.css"
 
 
@@ -24,6 +25,7 @@ return(
 <Link className="login"to="/SalesApp">Borrow</Link>
 <Link className="login"to="/report">Report</Link>
 <Link className="login"to="/return">Return</Link>
+<Link className="login"to="/payment">Online Payment</Link>
 <Routes>
 <Route path="/" element={<Login></Login>}></Route>
 <Route path="/product" element={<Product></Product>}></Route>
@@ -33,6 +35,7 @@ return(
 <Route path="/report" element={<Report></Report>}></Route>
 <Route path="/return" element={<Return></Return>}></Route>
 <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
+<Route path="/payment" element={<ScannerCode></ScannerCode>}></Route>
 </Routes>
 
 </Router>
